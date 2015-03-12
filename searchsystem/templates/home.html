@@ -41,18 +41,18 @@
                     </a>
                 </li>
 				{% if user.is_authenticated %}
-                <li>
-                    <a href="/register/">Registration</a>
-                </li>
-				<li>
-                    <a href="/login/">Login</a>
-                </li>
-				{% else %}
 				<li>
                     <a href="/cabinet/">Personal cabinet</a>
                 </li>
 				<li>
                     <a href="/logout/">Logout</a>
+                </li>
+				{% else %}
+				<li>
+                    <a href="/register/">Registration</a>
+                </li>
+				<li>
+                    <a href="/login/">Login</a>
                 </li>
 				{% endif %}
             </ul>

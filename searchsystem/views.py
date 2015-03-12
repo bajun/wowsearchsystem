@@ -103,17 +103,19 @@ def ajax_actions(request):
 def place(request,id):
 	context = RequestContext(request)
 	review_request = urlparse(request.META['QUERY_STRING'])
-	
+	account = Account.objects.get(email=request.user)
 	try:
 		place_data = Place.objects.get(id_google=id)
 		title = place_data.title
 		adress = place_data.adress
+		place_object = Place.objects.get(id_google=id)
+		user_view = UserAdd(user_id=account,place_id=place_object)
+		user_view.save()
 		return render_to_response('place/index.html',{'title' : title,'adress':adress,'current_acc':request.user},context)
 	except ObjectDoesNotExist:
 		place_data_json = urllib.request.urlopen("https://maps.googleapis.com/maps/api/place/details/json?reference="+id+"&sensor=true&key="+settings.GOOGLE_API_KEY).read().decode('utf-8')
 		place_data_python = json.loads(place_data_json)
 		place_data = place_data_python['result']
-		account = Account.objects.get(email=request.user)
 		place_object = Place.objects.create(adress=place_data['formatted_address'],id_google=id,title=place_data['name'])
 		user_view = UserAdd(user_id=account,place_id=place_object)
 		user_view.save()
@@ -128,10 +130,7 @@ def cabinet(request):
 	premium_data = [getattr(account,'is_premium'),getattr(account,'premium_expires')]
 	if(getattr(account,'is_premium') == True):
 		result = UserAdd.objects.filter(user_id=request.user)
-		result_places = [[r.place_id.adress] for r in result]
-		# result = UserAdd.objects.raw('SELECT * FROM searchsystem_useradd where user_id_id=%s',[request.user])
-		# for r in result:
-			# result_.append(r)
+		result_places = [[r.place_id.title,r.place_id.id_google] for r in result]
 	return render_to_response('cabinet/index.html',{'data':field_names,'premium_data': premium_data,'searches':result_places},context)
 
 def logout(request):

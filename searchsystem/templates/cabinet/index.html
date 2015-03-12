@@ -19,11 +19,10 @@
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">Your past searches</div>
-		{{searches}}
 		<div class="panel-body">
 			<table class="table">
-				{% for obj in data %}
-					<tr><td>{{obj.1}}</td><td>{{obj.2}}</td></tr>
+				{% for obj in searches %}
+					<tr><td>{{obj.0}}</td><td><a href="/view/{{obj.1}}">Go to view</a></td></tr>
 				{% endfor %}
 			</table>
 		</div>
