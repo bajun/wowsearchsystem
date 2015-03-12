@@ -1,0 +1,15 @@
+{% extends "home.html" %}
+{% block content %}
+	<h1>Wow Search Website</h1>
+	<input id="pac-input" class="controls" type="text" placeholder="Enter a location">
+	<div id="type-selector" class="controls">
+		<input type="radio" name="type" id="changetype-all" checked="checked">
+		<label for="changetype-all">All</label>
+		<input type="radio" value="utilities" name="type" id="changetype-utilities">
+		<label for="changetype-utilities">Utilities</label>
+		<input type="radio" value="entertainment" name="type" id="changetype-entertainment">
+		<label for="changetype-entertainment">Еntertainment</label>
+	</div>
+	<div id="map-canvas"></div>
+	<ul id="result"></ul>
+{% endblock %}
