@@ -12,7 +12,8 @@ import urllib.request
 import json
 
 def home(request):
-	return render_to_response('home/home.html')
+	context = RequestContext(request)
+	return render_to_response('home/home.html',{},context)
 
 def register(request):
 	context = RequestContext(request)
