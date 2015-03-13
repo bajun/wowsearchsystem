@@ -1,0 +1,7 @@
+*.pyc
+*.mo
+*~
+*.sqlite
+*.sublime-*
+/.idea
+/myenv
