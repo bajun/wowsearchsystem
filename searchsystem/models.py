@@ -104,3 +104,22 @@ class Review(models.Model):
 	
 	def __str__(self):
 		return '{0}'.format(self.content)
+	
+# i dunno where to put signals,so they will be here
+
+from paypal.standard.models import ST_PP_COMPLETED
+from paypal.standard.ipn.signals import valid_ipn_received
+
+def set_premium(sender,instance,**kwargs):
+	ipn_obj = sender
+	f = open('workfile', 'w')
+	f.write(str(instance))
+	if ipn_obj.payment_status == ST_PP_COMPLETED:
+		# Undertake some action depending upon `ipn_obj`.
+		if ipn_obj.custom == "update_premium_month":
+			account = Account.objects.get(email=instance.user)
+			account.objects.update(is_premium=True)
+		else:
+			pass
+
+valid_ipn_received.connect(set_premium)

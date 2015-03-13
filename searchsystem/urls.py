@@ -13,6 +13,14 @@ urlpatterns = patterns('',
 	url(r'^ajax_actions/$', 'searchsystem.views.ajax_actions'),
 	url(r'^view/(\S+)/$', 'searchsystem.views.place'),
 	url(r'^cabinet/$', 'searchsystem.views.cabinet'),
-	url(r'^logout/$', 'searchsystem.views.logout'),
+	url(r'^pay/$', 'searchsystem.views.pay_view'),
+	url(r'^pay-success/$', 'searchsystem.views.return_pay'),
+	url(r'^pay-cancel/$', 'searchsystem.views.cancel_pay'),
+)
+urlpatterns += patterns('django.contrib.auth.views',
+	url(r'^logout/$', 'logout', {'next_page': '/'}, name='logout'),
+)
+urlpatterns += patterns('',
+	(r'^something/paypal/', include('paypal.standard.ipn.urls')),
 )
 urlpatterns += staticfiles_urlpatterns()

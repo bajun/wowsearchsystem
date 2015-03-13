@@ -31,13 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-	'searchsystem'
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+	'searchsystem',
+	'paypal.standard.ipn'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -144,3 +145,6 @@ STATICFILES_FINDERS = (
 )
 # Needed to add some gmaps func. Change it!
 GOOGLE_API_KEY = 'AIzaSyBLdCk5zETdlUo1zXuJGNB87hx4e-E8CYY'
+# PayPal email
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = "srglvk3-facilitator@gmail.com"

@@ -1,0 +1,17 @@
+{% extends "home.html" %}
+{% block content %}
+	<h1>Pay for premium!</h1>
+	<div class="panel panel-default">
+		<div class="panel-heading">Pay for month</div>
+		<div class="panel-body">
+			{{form_month.render}}
+		</div>
+	</div>
+
+	<div class="panel panel-default">
+		<div class="panel-heading">Pay for year</div>
+		<div class="panel-body">
+			{{form_annum.render}}
+		</div>
+	</div>
+{% endblock %}
