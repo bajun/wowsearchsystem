@@ -14,6 +14,8 @@ urlpatterns = patterns('',
                        url(r'^pay/$', 'searchsystem.views.pay_view'),
                        url(r'^pay-success/$', 'searchsystem.views.return_pay'),
                        url(r'^pay-cancel/$', 'searchsystem.views.cancel_pay'),
+                       url(r'^search/(\S+)/$', 'searchsystem.views.search'),
+                       url(r'^premium/$', 'searchsystem.views.most_searched'),
                        )
 urlpatterns += patterns('django.contrib.auth.views',
                         url(r'^logout/$', 'logout', {'next_page': '/'}, name='logout'),

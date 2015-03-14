@@ -36,11 +36,10 @@ class Account(AbstractBaseUser):
 
     is_premium = models.BooleanField(default=False)
     premium_expires = models.DateTimeField(null=True)
+    nationality = models.CharField("Nationality",max_length=40,blank=True)
 
     is_admin = models.BooleanField(default=False)
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     objects = AccountManager()
 
@@ -73,6 +72,7 @@ class Account(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return self.is_admin
 
+
 class Category(models.Model):
     title = models.CharField(max_length=40, unique=True)
     parent = models.ForeignKey('self', blank=True, null=True)
@@ -85,7 +85,7 @@ class Place(models.Model):
     adress = models.TextField()
     id_google = models.CharField(max_length=255)
 
-    place_cat = models.ManyToManyField(Category,through="PlaceCategory")
+    place_category = models.ManyToManyField(Category, through="CategoryPlace")
 
     title = models.CharField(max_length=255)
 
@@ -102,11 +102,10 @@ class Place(models.Model):
 
 class UserAdd(models.Model):
     user_id = models.ForeignKey(Account)
-    models.OneToOneField
     place_id = models.ForeignKey(Place)
 
 
-class PlaceCategory(models.Model):
+class CategoryPlace(models.Model):
     category = models.ForeignKey(Category)
     place = models.ForeignKey(Place)
 

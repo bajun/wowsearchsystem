@@ -13,3 +13,7 @@
 	<div id="map-canvas"></div>
 	<ul id="result"></ul>
 {% endblock %}
+{% block googlemapassets %}
+    {% load staticfiles %}
+    <script src="{% static 'js/script.js'%}"></script>
+{% endblock %}

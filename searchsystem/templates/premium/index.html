@@ -1,0 +1,21 @@
+{% extends "home.html" %}
+{% block content %}
+    {% if is_premium == True %}
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Most searched places:</div>
+      <div class="panel-body">
+        <p>We collect most searched places for you,so you can search them,when you search places</p>
+      </div>
+
+      <!-- Table -->
+      <table class="table table-condensed table-hover">
+            {% for cat in searchcategories %}
+                <tr><td>{{ cat.0 }}</td><td><a href="/search/{{ cat.0 }}">Search for it!</a></td></tr>
+            {% endfor %}
+      </table>
+    </div>
+    {% else %}
+        <div class="alert alert-danger" role="alert">You don't pay for your account,so some features are restricted!<a href="/pay" class="alert-link">Make it as faster,as you can!</a></div>
+    {% endif %}
+{% endblock %}
